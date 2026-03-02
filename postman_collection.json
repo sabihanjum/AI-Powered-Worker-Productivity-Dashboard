@@ -1,0 +1,202 @@
+{
+  "info": {
+    "name": "Worker Productivity Dashboard API",
+    "description": "Collection of API endpoints for testing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": [""]
+        }
+      }
+    },
+    {
+      "name": "Get Dashboard Metrics",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/metrics/dashboard",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "metrics", "dashboard"]
+        }
+      }
+    },
+    {
+      "name": "List Workers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/workers",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "workers"]
+        }
+      }
+    },
+    {
+      "name": "List Workstations",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/workstations",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "workstations"]
+        }
+      }
+    },
+    {
+      "name": "Get Worker Metrics (All)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/metrics/workers",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "metrics", "workers"]
+        }
+      }
+    },
+    {
+      "name": "Get Worker Metrics (Specific)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/metrics/workers?worker_id=W1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "metrics", "workers"],
+          "query": [
+            {
+              "key": "worker_id",
+              "value": "W1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Ingest Single Event",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"timestamp\": \"2026-03-02T14:30:00Z\",\n  \"worker_id\": \"W1\",\n  \"workstation_id\": \"S1\",\n  \"event_type\": \"working\",\n  \"confidence\": 0.95,\n  \"count\": 0\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "events"]
+        }
+      }
+    },
+    {
+      "name": "Ingest Product Count Event",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"timestamp\": \"2026-03-02T14:35:00Z\",\n  \"worker_id\": \"W1\",\n  \"workstation_id\": \"S1\",\n  \"event_type\": \"product_count\",\n  \"confidence\": 0.98,\n  \"count\": 5\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "events"]
+        }
+      }
+    },
+    {
+      "name": "Ingest Batch Events",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[\n  {\n    \"timestamp\": \"2026-03-02T15:00:00Z\",\n    \"worker_id\": \"W2\",\n    \"workstation_id\": \"S2\",\n    \"event_type\": \"working\",\n    \"confidence\": 0.92,\n    \"count\": 0\n  },\n  {\n    \"timestamp\": \"2026-03-02T15:10:00Z\",\n    \"worker_id\": \"W2\",\n    \"workstation_id\": \"S2\",\n    \"event_type\": \"idle\",\n    \"confidence\": 0.88,\n    \"count\": 0\n  },\n  {\n    \"timestamp\": \"2026-03-02T15:15:00Z\",\n    \"worker_id\": \"W2\",\n    \"workstation_id\": \"S2\",\n    \"event_type\": \"product_count\",\n    \"confidence\": 0.95,\n    \"count\": 3\n  }\n]"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/events/batch",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "events", "batch"]
+        }
+      }
+    },
+    {
+      "name": "Seed Data (Admin)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/admin/seed-data?days=7",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "admin", "seed-data"],
+          "query": [
+            {
+              "key": "days",
+              "value": "7"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Database Stats",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/admin/stats",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "admin", "stats"]
+        }
+      }
+    }
+  ]
+}

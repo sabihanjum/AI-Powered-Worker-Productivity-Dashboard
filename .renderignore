@@ -1,0 +1,53 @@
+# Render Ignore File
+# Files and directories to exclude from deployment
+
+# Local development
+.git/
+.vscode/
+.idea/
+
+# Documentation (deploy but not needed for runtime)
+*.md
+!DEPLOYMENT.md
+!README.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local databases (use persistent disk instead)
+*.db
+*.sqlite
+*.sqlite3
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node modules (will be installed during build)
+node_modules/
+
+# Build artifacts
+frontend/dist/
+frontend/build/
+
+# Environment files (set via Render UI)
+.env
+.env.local
+.env.*.local
+
+# Docker files (not needed on Render)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Local scripts
+start.bat
+start.sh
+
+# Test files
+tests/
+*.test.js
+*.spec.js
